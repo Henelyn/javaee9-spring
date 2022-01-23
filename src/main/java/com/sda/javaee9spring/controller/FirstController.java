@@ -3,31 +3,50 @@ package com.sda.javaee9spring.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller //responsible for web ...?
-@Slf4j      //part of the lombok like singleton pattern, same as the line:  private static final Logger log = LoggerFactory.getLogger(FirstController.class);
+@Slf4j
+//part of the lombok like singleton pattern, same as the line:  private static final Logger log = LoggerFactory.getLogger(FirstController.class);
 
 public class FirstController {
     //   private static final Logger log = LoggerFactory.getLogger(FirstController.class); //singleton. Same as @Slf4j annotation.
 
-    @GetMapping("/my-first-page") //put URL in  the browser.
+    @GetMapping({"/my-first-page", "/"}) //put URL in  the browser.
     public String firstPage() { //that string is the name of the template (at the moment from resources template html file we created
         log.info("firstPage() method called!"); //that text will be shown when we run our web application
         return "home-page"; //html file name (looking for html inside resources/templates)
         // We return String because
     }
 
-    @GetMapping("/my-second-page")
+    @GetMapping("/my-second-page") //@GetMappings is used for creating URL's
     public String secondPage() {
-        log.info("secondPage() method called!");
+        log.info("secondPage() method called!!!");
+        //looking for html page inside resources/templates
         return "second-page";
     }
 
-    @GetMapping("/third-page")
-    public String thirdPage(){
-        log.info("Third page() method was called!");
+    //    @GetMapping("/third-page")
+    //    @GetMapping(value = "/third-page")
+    //    @GetMapping(value = {"/third-page"}, params = {})
+    @GetMapping(value = {"/third-page", "/third-too", "/abcd"})
+    public String thirdPage() {
+        log.info("thirdPage() method was called!!!");
         return "pages/third-page";
+    }
+
+    // /my-name?name=Henelyn&surname=Kandver
+    // name param with value Henelyn
+    // surname param with value Kandver
+    @GetMapping("/my-name")
+    public String myName(@RequestParam("name") String myName, @RequestParam("surname") String mySurname) {
+        log.info("myName() method was called!!!");
+        log.info("my name is: [{}]  and my surname is: [{}]", myName, mySurname); //first and second [{}] are replaced by myName and MuSurname
+        log.info(String.format("my name is: [%s]  and my surname is: [%s]", myName, mySurname)); //same thing as upper one
+
+        return "";
     }
 }
 
-//
+
+//end points are urls given to @GetMapping
