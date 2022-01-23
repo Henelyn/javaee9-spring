@@ -1,8 +1,6 @@
 package com.sda.javaee9spring.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,6 +14,20 @@ public class FirstController {
     public String firstPage() { //that string is the name of the template (at the moment from resources template html file we created
         log.info("firstPage() method called!"); //that text will be shown when we run our web application
         return "home-page"; //html file name (looking for html inside resources/templates)
+        // We return String because
+    }
+
+    @GetMapping("/my-second-page")
+    public String secondPage() {
+        log.info("secondPage() method called!");
+        return "second-page";
+    }
+
+    @GetMapping("/third-page")
+    public String thirdPage(){
+        log.info("Third page() method was called!");
+        return "pages/third-page";
     }
 }
 
+//
