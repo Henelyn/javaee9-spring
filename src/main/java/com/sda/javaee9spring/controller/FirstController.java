@@ -39,13 +39,15 @@ public class FirstController {
     // name param with value Henelyn
     // surname param with value Kandver
     @GetMapping("/my-name")
-    public String myName(@RequestParam("name") String myName, @RequestParam("surname") String mySurname) {
+    public String myName(@RequestParam(value = "name", defaultValue = "Jüri") String myFirstName,
+                         @RequestParam(value = "surname", defaultValue = "Tamm") String mySurname) {
         log.info("myName() method was called!!!");
-        log.info("my name is: [{}]  and my surname is: [{}]", myName, mySurname); //first and second [{}] are replaced by myName and MuSurname
-        log.info(String.format("my name is: [%s]  and my surname is: [%s]", myName, mySurname)); //same thing as upper one
+        log.info("my name is: [{}] and my surname is: [{}]", myFirstName, mySurname);
+        log.info(String.format("my name is: [%s] and my surname is: [%s]", myFirstName, mySurname));
 
         return "";
     }
+
 }
 
 
