@@ -2,6 +2,7 @@ package com.sda.javaee9spring.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 //part of the lombok like singleton pattern, same as the line:  private static final Logger log = LoggerFactory.getLogger(FirstController.class);
 @RequestMapping("/first")
-
 public class FirstController {
     //   private static final Logger log = LoggerFactory.getLogger(FirstController.class); //singleton. Same as @Slf4j annotation.
 
@@ -42,11 +42,16 @@ public class FirstController {
     // name param with value Henelyn
     // surname param with value Kandver
     @GetMapping("/my-name")
-    public String myName(@RequestParam(value = "name", defaultValue = "Jüri") String myFirstName,
-                         @RequestParam(value = "surname", defaultValue = "Tamm") String mySurname) {
+    public String myName(@RequestParam(value = "Name", defaultValue = "Jüri") String myFirstName,
+                         @RequestParam(value = "surname", defaultValue = "Tamm") String mySurname,
+                         Model pageParameters) { //That's a map
         log.info("myName() method was called!!!");
         log.info("my name is: [{}] and my surname is: [{}]", myFirstName, mySurname);
         log.info(String.format("my name is: [%s] and my surname is: [%s]", myFirstName, mySurname));
+
+
+        pageParameters.addAttribute("myName", myFirstName)
+                      .addAttribute("mySurname", mySurname);
 
         return "pages/name-and-surname";
     }

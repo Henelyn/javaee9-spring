@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Name-and-surname</title>
+</head>
+<body>
+<p th:text="example">Some text. 'th' is an attribute inside paragraph in our example</p>
+<h2>My name and surname</h2>
+<p>My name is: <span th:text="${myName}">Henelyn</span></p>
+<p>My surname is: <span th:text="${mySurname}">Kandver</span></p>
+</body>
+</html>
