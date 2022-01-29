@@ -5,4 +5,7 @@
 - when changing the branch, working tree should be clean
 
 ### Commands
-- git status - show what's going on in repository - witch branch you're on now and if there's any uncommitted changes 
+- git status - show what's going on in repository 
+  witch branch you're on now and if there's any uncommitted changes
+- git log - shows git history
+- git log --graph - shows git history as graph
