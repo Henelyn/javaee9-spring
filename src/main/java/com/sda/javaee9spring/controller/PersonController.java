@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-    public static String PERSON_KEY = "personKey";
+    public static final String PERSON_KEY = "persons"; //this PERSON:KEY is available only in Java class. To replace persons key
 
     @GetMapping("/names")
 
@@ -39,5 +39,6 @@ public class PersonController {
         data.addAttribute(PERSON_KEY, persons);
 
         return "persons/persons-names"; // return name of the template
+
     }
 }
