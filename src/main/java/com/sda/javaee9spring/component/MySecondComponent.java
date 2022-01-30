@@ -1,0 +1,10 @@
+package com.sda.javaee9spring.component;
+
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class MySecondComponent {//component is generic component. It's singleton and we going to change that by adding @Scope
+}
