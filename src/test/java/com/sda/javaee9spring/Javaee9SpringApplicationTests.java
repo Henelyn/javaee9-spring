@@ -1,5 +1,6 @@
 package com.sda.javaee9spring;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,8 +21,42 @@ class Javaee9SpringApplicationTests {
         //john (witch is of type Child) is dependency of jason (of type Parent)
         // dependency is actually composition, so one item is made of another
         Parent jason = new Parent("Jason", john);
+
+//composition vs inheritance =
+
+    }
+
+    @Test
+    void recordsTest(){
+        Animal animal = new Animal();
+        System.out.println(animal);
+
+        Toy toy = new Toy("T");
+        System.out.println(toy);
+    }
+
+    @Test
+    void equalsTest(){
+        Assertions.assertTrue(4 == 4);
+        Animal one = new Animal();
+        Animal two = new Animal();
+        Animal three = new Animal();
+
+        // == it checks if this is the same object
+        // equals by defaults it checks if this is the same object
+
+        Assertions.assertFalse(one == two);
+        Assertions.assertFalse(one.equals(two));
+
+        Toy furryTeddy = new Toy("furry Teddy");
+        Toy furryTeddy2 = new Toy("furry Teddy");
+        Assertions.assertEquals(furryTeddy, furryTeddy2); //Kas on samad või ei ole?
     }
 }
+
+//use records instead of @Value from Lombok
+//records are immutable- cannot modify instances of the class- NO SETTERS
+//By using records you don't need to use toString or equals. Records provides it for "free"
 //Toy is made of name
 record Toy(String name){}
 //Child is composed of: name and toy
