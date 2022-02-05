@@ -12,6 +12,8 @@
 <ul th:each="person: ${persons}"> <!-- it's basically a for each loop -->
     <li th:text="${person.name()}">Richard</li>
 </ul>
+<br>
+<a th:href="@{/persons/details}" href="#">Persons details</a>
 </ul>
 </body>
 </html>

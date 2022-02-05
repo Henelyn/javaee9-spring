@@ -18,9 +18,10 @@
     </thead>
     <tbody>
     <tr>
-        <td>Mariusz</td>
-        <td>Pastuszka</td>
-        <td>18</td>
+        <tr th:each="person: ${persons}"> <!--Know to use showDetailedPersonsList-->
+        <td th:text = "${person.name()}">Bella</td>
+        <td th:text = "${person.surname()}">Banana</td>
+        <td th:text = "${person.age()}">18</td>
     </tr>
     </tbody>
 </table>
