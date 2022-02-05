@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Persons names</h2>
-<!-- for (Person person: person) -->
+<!-- for (Person person: person) --> <!-- persons are coming from PersonController PERSON_KEY -->
 <ul th:each="person: ${persons}"> <!-- it's basically a for each loop -->
     <li th:text="${person.name()}">Richard</li>
 </ul>

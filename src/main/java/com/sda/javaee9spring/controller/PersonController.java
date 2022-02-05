@@ -2,6 +2,7 @@ package com.sda.javaee9spring.controller;
 
 import com.sda.javaee9spring.entityOrModel.Person;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,30 +16,32 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-    public static final String PERSON_KEY = "persons"; //this PERSON:KEY is available only in Java class. To replace persons key
+    public static final String PERSONS_KEY = "persons";
+
+    private final PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping("/names")
-
     public String showListOfPersonsNames(Model data) {
-        //with var Java is going to guess type of the variable based on assigned value
-        //  var name ="John"; //String name="John" // Java understands it a String
-        // var john = new Person("John", "Doe", 18);
+       var persons= personService.getAllPersons(); //from PersonService
 
-        List<Person> myBestFriendsJava7 = new ArrayList<Person>(); // old times we need to this, till java 7
-        var myBestFriendsJava10 = new ArrayList<Person>(); // old times we need to this, till java 7
-
-        //this list will be dynamic in the future :)
-//        List<Person> persons
-        var persons//used only inside the function, local variables
-                = List.of(
-                new Person("Mati", "Nuude", 67),
-                new Person("Kati", "Murutar", 60),
-                new Person("Oolu", "Tuuda", 45)
-        );
-
-        data.addAttribute(PERSON_KEY, persons);
-
-        return "persons/persons-names"; // return name of the template
+           data.addAttribute(PERSONS_KEY, persons);
+        return "persons/persons-names";
 
     }
+
 }
+
+
+
+
+
+
+
+
+
+

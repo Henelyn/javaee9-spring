@@ -7,12 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Javaee9SpringApplicationTests {
 
+    //SERVICE IS A LOGIC ABOUT OUR APPLICATION. in the future, we don't add it under the controller
+
     @Test
     void contextLoads() {
     }
 
     @Test
-    void dependencyInjectionFirstTrial() {
+    void dependencyInjectionFirstTrial() { //Injection means providing independence
         Toy furryTeddy = new Toy("furry Teddy");
         Child john = new Child("John", furryTeddy);
         // dependency injection is providing all required class dependencies during creation
@@ -65,7 +67,7 @@ record Child(String name, Toy favoriteToy) { }
 record Parent(String name, Child child) {
 }
 
-class Animal{}
+class  Animal{}
 class Mammal extends Animal {}
 class Tiger extends Mammal{}
 //Tiger is Mammal
