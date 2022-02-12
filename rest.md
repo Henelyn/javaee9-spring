@@ -8,3 +8,13 @@
 -3xx - redirect
 -4xx - client's errors
 -5xx - server's errors
+
+###Http exchange message consists of:
+- request
+    - url
+    - headers
+    - body
+- response
+    - status code
+    - headers
+    - body
