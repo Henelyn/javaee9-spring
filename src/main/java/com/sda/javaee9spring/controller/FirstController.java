@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+//the point where we request on the web. controller will provide you the return web
 @Controller //responsible for web ...? //Greats a bean for you adn stores it under Spring context
-@Slf4j
+@Slf4j //provides getters and setters?
 //part of the lombok like singleton pattern, same as the line:  private static final Logger log = LoggerFactory.getLogger(FirstController.class);
 @RequestMapping("/first")
 public class FirstController {
