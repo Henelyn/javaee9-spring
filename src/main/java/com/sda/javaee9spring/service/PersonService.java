@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PersonService {
+public class PersonService { //responsible for providing the data
 
     public List<Person> getAllPersons(){
         //With var Java is going to guess type of the variable based on assigned value
