@@ -1,11 +1,13 @@
 package com.sda.javaee9spring.service;
 
+import com.sda.javaee9spring.entityOrModel.Person;
 import com.sda.javaee9spring.entityOrModel.PersonEntity;
 import com.sda.javaee9spring.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -23,6 +25,18 @@ public class RealPersonService { //Knows nothing about controller
         var result = personRepository.findAll(); //var will great a List for us
         log.info("person entities read from db: {}, result", result);
 
+        return result;
+    }
+
+    public PersonEntity readPersonEntityById(Long id){
+        log.info("trying to read entity by id: [{}]", id);
+
+      Optional<PersonEntity> maybePerson = personRepository.findById(id); //return type is optional as there my or maybe not a person
+        PersonEntity result = null;
+        if (maybePerson.isPresent()) {
+           result = maybePerson.get();
+        }
+        log.info("found Person entity: [{}]", result);
         return result;
     }
 }
