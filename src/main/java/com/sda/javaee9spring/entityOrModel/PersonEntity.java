@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "PERSON_ENTITIES")
 @Data //from lombok. Almost like record but provides also setters
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor //Why we needed noarg constructor?
 public class PersonEntity {
 
     @Id
