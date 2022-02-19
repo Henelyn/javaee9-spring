@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -36,13 +37,20 @@ public class PersonRestController { //depends on RealPersonService
     // /person/12345 etc thx to  @GetMapping("/persons/{id}") we don't need to do that
 
     @GetMapping("/persons/{id}")
-    public ResponseEntity<PersonEntity> findPersonEntityById(@PathVariable("id") Long personId) { //@PathVariable will say where to find what we're looking for
-
+    public ResponseEntity<PersonEntity> findPersonEntityById(@PathVariable("id") Long personId) {
+        log.info("trying to find person entity by id: [{}]", personId);
         var personEntity = personService.readPersonEntityById(personId);
-        if (personEntity == null)
-            return ResponseEntity.notFound().build();
-        //               return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
-        return ResponseEntity.ok(personEntity);
-        //           return new ResponseEntity<>(personEntity, null, HttpStatus.OK);
+        return personEntity.map(personEntity1 -> ResponseEntity.ok(personEntity1)) // Optional<PersonEntity> -> Optional<ResponseEntity<PersonEntity>>
+                .orElseGet(() -> ResponseEntity.notFound().build()); //ctrl space inside map() to add lambda
+
+//
+//        if (personEntity.isEmpty()) {
+//            PersonEntity personEntityFromOptional = personEntity.get();
+//            return ResponseEntity.notFound().build();
+//        }
+////            return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);;
+//
+//        return ResponseEntity.ok(personEntity);
+////        return new ResponseEntity<>(personEntity, null, HttpStatus.OK);
     }
 }
