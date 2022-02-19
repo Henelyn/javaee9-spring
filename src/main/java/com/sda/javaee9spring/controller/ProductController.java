@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-private final ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -32,7 +32,7 @@ private final ProductService productService;
     }
 
     @GetMapping("/")
-    public List<ProductEntity> findAllProductEntities(){
+    public List<ProductEntity> findAllProductEntities() {
         log.info("Trying to list all the products");
 
         return productService.readAllProductEntities();
