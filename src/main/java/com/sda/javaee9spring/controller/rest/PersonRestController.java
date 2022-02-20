@@ -66,10 +66,15 @@ public class PersonRestController { //depends on RealPersonService
     }
 
     @PostMapping("/persons") //create an endpoint for post method
-    public ResponseEntity<PersonEntity>  createPersonEntity(@RequestBody PersonEntity newPersonToSave) {//I need to learn about response codes
+    public ResponseEntity<?>  createPersonEntity(@RequestBody PersonEntity newPersonToSave) {//I need to learn about response codes
         log.info("Received new person to save: [{}]", newPersonToSave);
-        personService.savePerson(newPersonToSave);
-        return ResponseEntity.created(URI.create("/api/persons/%d".formatted(newPersonToSave.getId())))
-                .body(newPersonToSave);
+        boolean saved = personService.savePerson(newPersonToSave);
+
+        if (saved) {
+            return ResponseEntity.created(URI.create("/api/persons/%d".formatted(newPersonToSave.getId())))
+                    .body(newPersonToSave);
+        } else {
+            return ResponseEntity.badRequest().body("You've sent me wrong data!!!");
+        }
     }
 }
