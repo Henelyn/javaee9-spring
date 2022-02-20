@@ -29,17 +29,17 @@ public class RealPersonService { //Knows nothing about controller
         return result;
     }
 
-    public Optional<PersonEntity> readPersonEntityById(Long id){
+    public Optional<PersonEntity> readPersonEntityById(Long id) {
         log.info("trying to read entity by id: [{}]", id);
 
-      Optional<PersonEntity> maybePerson = personRepository.findById(id); //return type is optional as there my or maybe not a person
+        Optional<PersonEntity> maybePerson = personRepository.findById(id); //return type is optional as there my or maybe not a person
 
 
         log.info("found Person entity: [{}]", maybePerson);
         return maybePerson;
     }
 
-    @Transactional
+    @Transactional //when we prepare at least 2 queries
     public boolean deletePersonEntityById(Long id) {
         log.info("trying to delete entity by id: [{}]", id);
 
@@ -51,4 +51,14 @@ public class RealPersonService { //Knows nothing about controller
 
         return result;
     }
+
+    public PersonEntity savePerson(PersonEntity entity) {
+        log.info("entity for saving [{}]", entity);
+        personRepository.save(entity);
+        log.info("entity after saving: [{}]", entity);
+
+        return entity;
+    }
+
+
 }
