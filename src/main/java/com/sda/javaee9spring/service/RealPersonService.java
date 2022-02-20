@@ -52,13 +52,16 @@ public class RealPersonService { //Knows nothing about controller
         return result;
     }
 
+    @Transactional //using query twice therefor we need @transactional
     public PersonEntity savePerson(PersonEntity entity) {
         log.info("entity for saving [{}]", entity);
-        personRepository.save(entity);
-        log.info("entity after saving: [{}]", entity);
+        if (!personRepository.checkDuplicates(entity.getName(), entity.getSurname())) {
+            personRepository.save(entity);
+            log.info("entity after saving: [{}]", entity);
+        } else {
+            log.info("duplicate!!");
+        }
 
         return entity;
     }
-
-
 }
