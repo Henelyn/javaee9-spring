@@ -175,7 +175,7 @@ public class ConsoleDemo {
                 return null;
             }
         };
-        RealPersonService myService = new RealPersonService(mocRepo);
+        RealPersonService myService = new RealPersonService(mocRepo, null);
         myService.readAllPersonEntities();
     }
 }
