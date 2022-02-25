@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Repo</title>
+    <link href="/css/git-style.css" type="text/css" rel="stylesheet"> <!-- paaritub git-style lehega -->
+</head>
+
+<body>
+
+<table>
+    <thead>
+    <tr id="headerRow">
+        <td>Id</td>
+        <td>Name</td>
+        <td>Private</td>
+        <td>URL</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="bodyRow" th:each="gitResponse: ${gitResponse}">
+        <td th:text="${gitResponse.id}"></td>
+        <td th:text="${gitResponse.name}"></td>
+        <td th:text="${gitResponse.available}"></td>
+        <td><a th:text="${gitResponse.url}" th:href="${gitResponse.url}"></a></td>
+    </tbody>
+</table>
+
+</body>
+</html>
